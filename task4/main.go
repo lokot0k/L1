@@ -19,8 +19,8 @@ func main() {
 		panic(fmt.Sprintf("Workers quanity should be an integer: %v", err))
 	}
 	inputChan := make(chan string, workersNum)
-	sigChan := make(chan os.Signal, 1) // канал для получения ctrl+c, буферизируем, чтобы избежать блокирующих вызовов
-	signal.Notify(sigChan, os.Interrupt, syscall.SIGTERM)
+	sigChan := make(chan os.Signal, 1) // канал для получения ctrl+c, буферизируем, чтобы гарантировано перехватить сигнал
+	signal.Notify(sigChan, os.Interrupt, syscall.SIGINT)
 	wg := &sync.WaitGroup{} // wg для обработчиков вывода, для того, чтоб не пропали уже положенные в канал данные
 	for i := 0; i < workersNum; i++ {
 		wg.Add(1)
