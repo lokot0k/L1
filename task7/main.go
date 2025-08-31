@@ -6,8 +6,8 @@ import (
 )
 
 type ConcurrentMap struct {
-	sync.RWMutex
-	data map[string]interface{}
+	sync.RWMutex // RWMutex, так как можем держать несколько параллельных чтений
+	data         map[string]interface{}
 }
 
 func NewConcurrentMap() *ConcurrentMap {
