@@ -35,5 +35,6 @@ func getInput() (int64, int, error) {
 }
 
 func switchBit(num int64, i int) int64 {
+	// свитч посредством побитового xor с 1
 	return num ^ (1 << i)
 }
