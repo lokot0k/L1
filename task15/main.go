@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
 	"strings"
 )
@@ -14,7 +13,9 @@ func createHugeString(size int) string {
 
 func someFunc() {
 	v := createHugeString(1 << 10)
-	justString = string(bytes.Clone([]byte(v[:100])))
+	buffer := make([]byte, 100)
+	copy(buffer, v)
+	justString = string(buffer)
 }
 
 func main() {
